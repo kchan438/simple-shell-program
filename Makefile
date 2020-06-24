@@ -42,7 +42,7 @@ CC=gcc
 CFLAGS= -g -I.
 LIBS =
 DEPS = 
-OBJ = chan_kevin_HW0_main.o
+OBJ = simple_shell.o simple_shell_main.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)

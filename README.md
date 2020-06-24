@@ -7,9 +7,9 @@ Let me remind you of the expectations.  Code should be neat, well documented.  V
 ```
 /**************************************************************
 * Class:  CSC-415-0# Summer 2020
-* Name:
-* Student ID:
-* Project: <project name, like Assignment 3 – Simple Shell
+* Name: Kevin Chan
+* Student ID: 918468621
+* Project: Assignment 3 - Simple Shell
 *
 * File: <name of this file>
 *
