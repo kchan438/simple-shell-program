@@ -6,7 +6,7 @@
 *
 * File: simple_shell.c
 *
-* Description:
+* Description: This file is where all functions are located.
 *
 **************************************************************/
 

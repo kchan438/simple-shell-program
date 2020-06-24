@@ -6,7 +6,8 @@
 *
 * File: simple_shell.h
 *
-* Description:
+* Description: This is the header file to all the functions needed
+* for this assignment.
 *
 **************************************************************/
 
