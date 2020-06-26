@@ -19,18 +19,27 @@
 
 int main(int argc, char* argv[])
 {
+	int pid = 0;
+	//char* command_arg[buffer_size];
+	//char* command_line[buffer_size];
+
+	//token delimiter for the command line arguments
+	//const char space[] = " ";
 	
-	//char command_arg[buffer_size];
-	//char command_line[buffer_size];
+	//might need to print out token, each token will
+	//be each string separated by the delimiter
+	//will need a while loop to print or read if needed
+	//char* token;
 	char *envp[] = { (char *) "PATH=/bin", 0 };
+	//using a while loop to loop forever until the user
+	//wants to exit
 	while(1)
 	{
-	  //will display the prefix prompt(ex: #student@student->)
-	  ////display_prompt();
 	  //will take in user input
 	  //readCommand(command, parameters);
-	  //fork();
-	  if(fork() !=0)
+
+	  int pid = fork();
+	  if(pid !=0)	//parent
 	  {
 	    wait(NULL);
 	  }
@@ -40,10 +49,11 @@ int main(int argc, char* argv[])
 	    //strcat(command_line, command_arg);
 	    //execvp(command_line, parameters, envp);
 	  }
-	  if( strcmp(command_line, "exit") == 0)
-	  {
-	    break;
-	  }
+	  //this line will exit if the user types in exit
+	  //if( strcmp(command_line, "exit") == 0)
+	  //{
+	  //  break;
+	  //}
 	}
 	return 0;
 }

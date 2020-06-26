@@ -15,7 +15,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 //might not be a string return
-char display_prompt();
+void display_prompt();
 char read_command(char command, char* parameters);

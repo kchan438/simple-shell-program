@@ -13,14 +13,19 @@
 #include "simple_shell.h"
 
 
-char display_prompt()
+void display_prompt()
 {
-
-	//return;
+	static int firstIteration = 1;
+	if(firstIteration == 1)
+	{
+	  firstIteration = 0;
+	}
+	printf("$");
 }
 
 char read_command(char command, char* parameters)
 {
-
+	//will display the prefix prompt(ex: student@student$)
+	display_prompt();
 	//return;
 }
