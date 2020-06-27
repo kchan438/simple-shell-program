@@ -19,4 +19,4 @@
 
 //might not be a string return
 void display_prompt();
-char read_command(char command, char* parameters);
+char read_command(char command [], char parameters []);

@@ -23,9 +23,26 @@ void display_prompt()
 	printf("$");
 }
 
-char read_command(char command, char* parameters)
+char read_command(char command [], char parameters [])
 {
 	//will display the prefix prompt(ex: student@student$)
 	display_prompt();
+	char* command_line[buffer_size];
+	char* token;
+	 
+	//get user input and save it into command_line
+	fgets(command_line, buffer_size, stdin);
+
+	
+
+
+
+
+return 0;
+
+
 	//return;
 }
+
+
+

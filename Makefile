@@ -37,7 +37,7 @@
 ROOTNAME=chan_kevin_HW
 HW=3
 FOPTION=_main
-RUNOPTIONS=Hello World
+RUNOPTIONS=
 CC=gcc
 CFLAGS= -g -I.
 LIBS =
