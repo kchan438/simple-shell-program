@@ -17,6 +17,4 @@
 #include <string.h>
 #include <unistd.h>
 
-//might not be a string return
-void display_prompt();
-char read_command(char command [], char parameters []);
+void read_command(char command_line [], char* parameters []);

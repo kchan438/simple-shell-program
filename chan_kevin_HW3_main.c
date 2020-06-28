@@ -12,60 +12,67 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
-#define buffer_size 1024	//command line should not be more than 1024
-#define path_size 100
+#define buffer_size 1024
+#define path_size 20
+#define arg_size 100
 int main(int argc, char* argv[])
 {	
-	//this will be the PATH environment variable for when we
-	//use execvp()
-	char* env_var[] = { (char *) "PATH=/bin", 0 };
+	//path will be copied over to full_path of bin file dir.
+	char* path = "/bin/";
+	//we will store the full path in this char array
+	char full_path[path_size];
+	//list of parameters 
+	char* args[arg_size];
 	//whole command line that the user inputs
-	char* command_line[buffer_size];
-	//string will be saved in here after we get the first, 		which is the command
-	char* token;
-	//we'll need this to get the PID of parent and child???
-	int pid = 0;
-	//get user input and save it into command_line
-	fgets(command_line, buffer_size, stdin);
-	printf("\n");
+	char command[buffer_size];
+	//this will be the status returned after the child returns
+	int status;
+	int pid;
 
-	char* parameters[buffer_size/strlen(token)];
-	int i = 0;
-	while(token != NULL)
-	{
-	  argv[i] = token;
-	  token = strtok(NULL, " ");
-	  i++;
-	}
-	argv[i] = NULL;
-
-
+	//char* parameters[buffer_size/strlen(token)];
+	
 
 	//endless loop until the user wants to exit
 	while(1)
 	{
-	  //will take in user input
-	  //readCommand(command, parameters);
-
-	  int pid = fork();
-	  if(pid !=0)	//parent
+	  read_command(command, args);
+	  int forkReturnValue = fork();
+	  //if fork fails it will return less than 0
+	  if( forkReturnValue < 0)
 	  {
-	    wait(NULL);
+	    printf("Fork failed\n");
 	  }
-	  else	//child
+	  //parent
+	  else if(forkReturnValue !=0)
 	  {
-	    //strcpy(path, "/bin/");
-	    //strcat(path, command);
-	    //execvp(path, parameters, env_var);
+	    //printf("Parent %d\n", (int) getpid());
+	    //wait will eventually terminate the child process
+	    //and head back into the parent process
+	    //wait will return status of child
+	    status = wait( NULL);  
+	  }
+	  //child
+	  else
+	  {
+	    //gets pid of child process
+	    pid = (int) getpid();
+	    printf("Child %d and with status %d\n",pid, status);
+	    //copies over path string into full_path array
+	    strcpy(full_path, path);
+	    //concatenates args[0] which is first command
+	    strcat(full_path, args[0]);
+	    //will execute the full_path and looks for params in args
+	    execvp(full_path, args);
 	  }
 	  //this line will exit if the user types in exit
-	  /*if( strcmp(command_line, "exit") == 0)
-	  //{
-	  //  break;
-	  }*/
+	  if( strcmp(command, "exit") == 0)
+	  {
+	     exit(0);
+	  }
 	}
 	return 0;
 }
