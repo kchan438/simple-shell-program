@@ -16,9 +16,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
+#include "simple_shell.h"
 #define buffer_size 1024
 #define path_size 20
 #define arg_size 100
+
 int main(int argc, char* argv[])
 {	
 	//path will be copied over to full_path of bin file dir.
@@ -31,7 +33,6 @@ int main(int argc, char* argv[])
 	char command[buffer_size];
 	//this will be the status returned after the child returns
 	int status;
-	int pid;
 
 	//char* parameters[buffer_size/strlen(token)];
 	
@@ -49,18 +50,13 @@ int main(int argc, char* argv[])
 	  //parent
 	  else if(forkReturnValue !=0)
 	  {
-	    //printf("Parent %d\n", (int) getpid());
-	    //wait will eventually terminate the child process
-	    //and head back into the parent process
-	    //wait will return status of child
+	    //saves the wait return status
 	    status = wait( NULL);  
 	  }
 	  //child
 	  else
 	  {
-	    //gets pid of child process
-	    pid = (int) getpid();
-	    printf("Child %d and with status %d\n",pid, status);
+	    printf("Child %d and with status %d\n", (int) getpid(), status);
 	    //copies over path string into full_path array
 	    strcpy(full_path, path);
 	    //concatenates args[0] which is first command
